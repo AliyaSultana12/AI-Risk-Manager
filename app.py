@@ -31,4 +31,10 @@ def simulate():
  presets={"Account Takeover":(347,81,1280000,219,83,45,91),"Card Testing":(512,126,760000,384,91,37,94),"Transaction Velocity Spike":(284,64,940000,176,72,36,88),"Refund Abuse":(193,43,510000,102,51,40,86),"Suspicious Device Cluster":(421,97,1640000,255,112,54,93),"Coordinated Merchant Attack":(608,154,2310000,401,139,68,96)}
  a,b,c,d,e,f,g=presets.get(s,presets["Account Takeover"])
  return jsonify(scenario=s,transactions_analyzed=10000,flagged=a,accounts=b,amount=c,blocked=d,held=e,review=f,detection=g,risk_spike=random.randint(48,74))
-if __name__=="__main__": app.run(debug=True,host="127.0.0.1",port=5000)
+if __name__ == "__main__":
+    import os
+
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
